@@ -1,4 +1,4 @@
-import { MouseEvent } from "react";
+import { MouseEvent, useState } from "react";
 
 //type es lo mismo que interface
 type Props = {
@@ -6,7 +6,34 @@ type Props = {
   data: string[];
 };
 
+
+
 function List({ data }: Props) {
+  const [index, setIndex] = useState(1); // se le conoce como hook, es una forma de manejar el estado en componentes funcionales
+  const handleClick = (i: number) => {
+    //ahora i es un numero
+    // console.log(e);
+    setIndex(i);
+  };
+
+  return (
+    <ul className="list-group">
+      {data.map((elemento, i) => (
+        <li
+          key={elemento}
+          onClick={() => handleClick(i)}
+          className={`list-group-item ${index === i ? "active" : ""}`}
+        >
+          {elemento}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+
+function List_consoleLog({ data }: Props) {
+  //creamos una variable para guardar el indice
   const handleClick = (e: string) => { //e es un string, no un MouseEvent
     console.log(e); 
   };
@@ -45,3 +72,4 @@ function List_console({ data }: Props) {
 }
 
 export default List;
+export { List_console, List_consoleLog }; // Exportamos las funciones adicionales si es necesario
