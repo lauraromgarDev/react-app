@@ -1,5 +1,6 @@
 import Card, { CardBody } from "./components/Card";
 import List from "./components/List";
+import Titulo from "./Titulo";
 
 
 function App() {
@@ -9,10 +10,16 @@ function App() {
     "azul",
     "amarillo",
   ];
-  return <Card>
+
+  return   (
+  <>
+  <Titulo /> 
+  <Card>
     <CardBody title="hola mundo" text="Este es el texto" />
     <List data={list}/>
   </Card>;
+  </>
+  );
 }
 
 export default App;
